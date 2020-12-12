@@ -7,7 +7,10 @@ import Message from './Message/Message';
 
 function App() {
   const [input, setInput] = useState('');
-  const [messages, setMessages] = useState(['hdg', 'hi']);
+  const [messages, setMessages] = useState([
+    { username: 'Sakil', text: 'Hello ' },
+    { username: 'Test', text: 'hi' },
+  ]);
   const [username, setUsername] = useState('');
 
   console.log(input);
@@ -18,7 +21,7 @@ function App() {
   }, []);
   const sendMessage = (e) => {
     e.preventDefault();
-    setMessages([...messages, input]);
+    setMessages([...messages, { username: username, text: input }]);
     setInput('');
   };
   return (
@@ -44,7 +47,7 @@ function App() {
       </form>
 
       {messages.map((message, i) => (
-        <Message key={i} text={message} />
+        <Message key={i} username={message.username} text={message.text} />
       ))}
     </div>
   );
